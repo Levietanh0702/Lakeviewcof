@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lake View Coffee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600&family=Quicksand:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="brand">
+        <img src="./img/logoLakeView.jpg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        LAKE VIEW COFFEE
+    </div>
+    <nav>
+        <a href="#" onclick="filterCategory('all',this);return false;" class="active">Trang Chủ</a>
+        <a href="#" onclick="openModal('modal-about');return false;">Giới Thiệu</a>
+        <a href="#" onclick="openModal('modal-drink');return false;">Đồ Uống</a>
+        <a href="#" onclick="openModal('modal-food');return false;">Đồ Ăn</a>
+        <a href="#" onclick="openModal('modal-booking');return false;">Đặt Bàn</a>
+        <a href="#" onclick="openModal('modal-contact');return false;">Liên Hệ</a>
+    </nav>
+    <div class="contact-info">📞 0987.888.8386</div>
+</header>
+
+<!-- SLIDER -->
+<div class="slider-container">
+    <div class="slide active"><img src="./img/AnhQuangCao1.jpg" alt="" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=80'"></div>
+    <div class="slide"><img src="./img/AnhQuangCao22.jpg" alt="" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80'"></div>
+    <div class="slide"><img src="./img/AnhQuangCao3.jpg" alt="" onerror="this.src='https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200&q=80'"></div>
+    <div class="slider-overlay">
+        <h1 class="slider-title">Lake View Coffee</h1>
+        <p class="slider-subtitle">Nơi bình yên gõ cửa tâm hồn — Ecopark, Hưng Yên</p>
+        <a href="#menu-section" class="slider-cta">Xem thực đơn ↓</a>
+    </div>
+</div>
+
+<!-- ABOUT INLINE -->
+<section id="about" class="about-section">
+    <div class="about-row">
+        <div class="about-text">
+            <h2 class="about-title">LAKE VIEW COFFEE <span>Nơi bình yên gõ cửa tâm hồn</span></h2>
+            <p>Chào mừng bạn đã đến với <strong>Lake View Coffee</strong> – không gian của những bản giao hưởng tĩnh lặng giữa miền xanh Ecopark. Tại đây, bạn không chỉ thưởng thức thức uống, mà còn "thưởng thức" cả một khoảng không gian bao la, nơi những muộn phiền dường như tan biến theo những con sóng nhỏ.</p>
+            <div class="about-info">
+                <p>📍 <strong>Tọa độ:</strong> Khu đô thị Ecopark, Văn Giang, Hưng Yên.</p>
+                <p>⏰ <strong>Giờ mở cửa:</strong> 07:30 – 23:00 hàng ngày.</p>
+            </div>
+            <button class="btn-readmore" onclick="openModal('modal-about')">Đọc thêm về chúng tôi →</button>
+        </div>
+        <div class="about-image">
+            <img src="./img/LakeViewHo.png" alt="View hồ Ecopark" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&q=80'">
+        </div>
+    </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+    <div class="values-inner">
+        <h2 class="values-heading">Tại sao chọn <span>Lake View Coffee?</span></h2>
+        <div class="about-values">
+            <div class="value-card card-green">
+                <div class="icon-box"><i class="fas fa-leaf"></i></div>
+                <h3>Hương vị an lành</h3>
+                <p>Nguyên liệu tự nhiên, từ cà phê đặc sản đến trà thảo mộc, tốt cho sức khỏe thân - tâm.</p>
+            </div>
+            <div class="value-card card-brown">
+                <div class="icon-box"><i class="fas fa-heart"></i></div>
+                <h3>Gắn kết yêu thương</h3>
+                <p>Không gian văn hóa lành mạnh cho gia đình sum vầy và bạn bè kết giao.</p>
+            </div>
+            <div class="value-card card-blue">
+                <div class="icon-box"><i class="fas fa-wind"></i></div>
+                <h3>Tái tạo năng lượng</h3>
+                <p>Thanh lọc tâm trí, giảm stress hiệu quả giữa không gian sinh thái tuyệt mỹ.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section id="menu-section">
+    <h2 class="menu-title">Lake View <span>Menu</span></h2>
+    <div class="filter-bar-wrapper">
+        <div class="filter-bar">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="menu-search"
+                    placeholder="Tìm món bạn muốn... (VD: Bạc Xỉu, Croissant)"
+                    oninput="handleSearch(this.value)">
+                <button class="search-clear" onclick="clearSearch()" title="Xóa">✕</button>
+            </div>
+            <select class="sort-select" id="sort-select" onchange="handleSort(this.value)">
+                <option value="default">⇅ Mặc định</option>
+                <option value="price-asc">↑ Giá thấp → cao</option>
+                <option value="price-desc">↓ Giá cao → thấp</option>
+                <option value="bestseller">🏆 Best Seller</option>
+            </select>
+        </div>
+    </div>
+    <div class="menu-grid" id="product-list"></div>
+    <div id="pagination" class="pagination-container"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-stats-section">
+        <div class="rating-box">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p style="margin-top:8px;color:#8a918a;font-size:13px;">4.9/5 điểm đánh giá từ khách hàng</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-item"><h2><span class="counter" data-target="2500">0</span>+</h2><p>KHÁCH GHÉ THĂM</p></div>
+            <div class="stat-item"><h2><span class="counter" data-target="8900">0</span>+</h2><p>ĐỒ UỐNG ĐÃ BÁN</p></div>
+        </div>
+    </div>
+    <div class="footer-main-section">
+        <div class="footer-container">
+            <div class="footer-column info-col">
+                <h4 class="brand-name">LAKE VIEW COFFEE</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Khu đô thị Ecopark, Văn Giang, Hưng Yên.</p>
+                <p><i class="fas fa-phone-alt"></i> 0987.888.8386</p>
+                <p><i class="fas fa-envelope"></i> contact@lakeviewcoffee.com</p>
+                <p>© Bản quyền thuộc về Lake View Coffee</p>
+            </div>
+            <div class="footer-column">
+                <h3>CHÍNH SÁCH</h3>
+                <ul>
+                    <li><a href="#">Chính sách thành viên</a></li>
+                    <li><a href="#">Chính sách thanh toán</a></li>
+                    <li><a href="#">Bảo mật thông tin</a></li>
+                    <li><a href="#">Quy định đặt bàn</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>HỖ TRỢ KHÁCH HÀNG</h3>
+                <ul>
+                    <li><a href="#" onclick="openModal('modal-about');return false;">Giới thiệu về Lake View</a></li>
+                    <li><a href="#" onclick="openModal('modal-drink');return false;">Thực đơn đồ uống</a></li>
+                    <li><a href="#" onclick="openModal('modal-booking');return false;">Đặt bàn trực tuyến</a></li>
+                    <li><a href="#" onclick="openModal('modal-contact');return false;">Liên hệ hợp tác</a></li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>ĐĂNG KÝ NHẬN TIN</h3>
+                <div class="newsletter-box">
+                    <input type="email" placeholder="Email của bạn...">
+                    <button>Đăng ký</button>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="payment-methods">
+                    <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
+                    <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="MC">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ═══ MODAL: GIỚI THIỆU ═══ -->
+<div id="modal-about" class="modal-overlay" onclick="overlayClose(event,'modal-about')">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-about')">✕</button>
+        <div class="about-modal-hero">
+            <div class="about-modal-hero-grid">
+                <div class="hero-img main"><img src="./img/LakeViewHo.png" alt="Lake View hồ" onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80'"></div>
+                <div class="hero-img"><img src="./img/AnhQuangCao1.jpg" alt="cafe" onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80'"></div>
+                <div class="hero-img"><img src="./img/AnhQuangCao22.jpg" alt="chill" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&q=80'"></div>
+                <div class="hero-img"><img src="./img/AnhQuangCao3.jpg" alt="view" onerror="this.src='https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=500&q=80'"></div>
+                <div class="hero-img"><img src="./img/bacxiu.jpg" alt="cà phê" onerror="this.src='https://images.unsplash.com/photo-1485808191679-5f86510bd9d7?w=500&q=80'"></div>
+            </div>
+            <div class="about-modal-hero-overlay">
+                <h1 class="about-modal-hero-title">Lake View Coffee</h1>
+                <p class="about-modal-hero-sub">Bản giao hưởng của sự thư thái</p>
+            </div>
+        </div>
+        <div class="about-modal-body">
+            <div class="about-modal-section">
+                <h2><span>🌿</span> Lời Chào Tĩnh Lặng Từ Miền Xanh</h2>
+                <p>Chào mừng bạn bước chân vào thế giới của <strong>Lake View Coffee</strong> – bản giao hưởng tĩnh lặng được viết nên giữa lòng "thành phố triệu cây xanh" Ecopark. Trong guồng quay hối hả của cuộc sống hiện đại, đôi khi đỉnh cao của sự tận hưởng không nằm ở những âm thanh náo nhiệt, mà lại ẩn mình trong một góc nhỏ bình yên.</p>
+                <p>Chúng tôi tạo ra nơi này để bạn có thể tạm gác lại những lo toan, sống chậm lại một nhịp, lắng nghe nhịp đập của chính tâm hồn mình và cảm nhận sự vỗ về dịu dàng từ thiên nhiên đại ngàn.</p>
+            </div>
+            <div class="about-modal-infobox">
+                <div class="about-modal-infocard"><div class="icon">📍</div><h4>Địa Chỉ</h4><p>Khu đô thị Ecopark, Văn Giang, Hưng Yên</p></div>
+                <div class="about-modal-infocard"><div class="icon">⏰</div><h4>Giờ Mở Cửa</h4><p>7:30 Sáng – 11:00 Đêm hàng ngày</p></div>
+                <div class="about-modal-infocard"><div class="icon">📞</div><h4>Đường Dây Nóng</h4><p>0987.888.8386</p></div>
+                <div class="about-modal-infocard"><div class="icon">🌟</div><h4>Đánh Giá</h4><p>4.9/5 ⭐ từ khách hàng</p></div>
+            </div>
+            <div class="about-modal-section" style="margin-top:42px;">
+                <h2><span>✨</span> Thực Đơn – Nghệ Thuật Chăm Sóc Thân, Tâm & Trí</h2>
+                <p>Menu tại Lake View Coffee không chỉ là danh sách thức uống, mà là những "tác phẩm nghệ thuật" hương vị được gửi gắm tâm huyết nhằm nâng tầm chất lượng sống cho cộng đồng Ecopark.</p>
+                <div class="about-value-pills">
+                    <div class="value-pill"><i class="fas fa-leaf"></i> Nguyên liệu tự nhiên</div>
+                    <div class="value-pill"><i class="fas fa-coffee"></i> Cà phê đặc sản</div>
+                    <div class="value-pill"><i class="fas fa-seedling"></i> Trà thảo mộc</div>
+                    <div class="value-pill"><i class="fas fa-heart"></i> Không gian sum vầy</div>
+                    <div class="value-pill"><i class="fas fa-wind"></i> Tái tạo năng lượng</div>
+                    <div class="value-pill"><i class="fas fa-water"></i> View hồ tuyệt mỹ</div>
+                </div>
+            </div>
+            <div class="about-quote">
+                <blockquote>"Hãy đến với Lake View Coffee, để tìm lại chính mình và để bình yên tìm về với bạn."</blockquote>
+                <cite>— LAKE VIEW COFFEE · ECOPARK, HƯNG YÊN —</cite>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ MODAL: ĐỒ UỐNG ═══ -->
+<div id="modal-drink" class="modal-overlay" onclick="overlayClose(event,'modal-drink')">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-drink')">✕</button>
+        <div class="cat-modal-header">
+            <h1>☕ Thực Đơn Đồ Uống</h1>
+            <p>Mỗi ly là một khoảnh khắc bình yên — chọn cho mình một góc thư thái nhé</p>
+        </div>
+        <div class="cat-tabs" id="drink-tabs">
+            <button class="cat-tab active" onclick="filterDrink('all',this)">Tất cả</button>
+            <button class="cat-tab" onclick="filterDrink('cf-truyen-thong',this)">Cà Phê Truyền Thống</button>
+            <button class="cat-tab" onclick="filterDrink('cf-may',this)">Cà Phê Máy</button>
+            <button class="cat-tab" onclick="filterDrink('tra-hoa-qua',this)">Trà Hoa Quả</button>
+            <button class="cat-tab" onclick="filterDrink('nuoc-ep',this)">Nước Ép</button>
+            <button class="cat-tab" onclick="filterDrink('healthy',this)">Healthy</button>
+            <button class="cat-tab" onclick="filterDrink('tra-sua-da-xay',this)">Trà Sữa & Đá Xay</button>
+        </div>
+        <div class="cat-modal-grid" id="drink-grid"></div>
+    </div>
+</div>
+
+<!-- ═══ MODAL: ĐỒ ĂN ═══ -->
+<div id="modal-food" class="modal-overlay" onclick="overlayClose(event,'modal-food')">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-food')">✕</button>
+        <div class="cat-modal-header" style="background:linear-gradient(135deg,#6B3D1E,#3d1e0a);">
+            <h1>🥐 Thực Đơn Đồ Ăn</h1>
+            <p>Từ bánh thơm buổi sáng đến những món nhâm nhi nhẹ nhàng bên hồ</p>
+        </div>
+        <div class="cat-tabs" id="food-tabs">
+            <button class="cat-tab active" onclick="filterFood('all',this)">Tất cả</button>
+            <button class="cat-tab" onclick="filterFood('banh-ngot',this)">Bánh Ngọt</button>
+            <button class="cat-tab" onclick="filterFood('banh-man',this)">Bánh Mặn</button>
+
+            <button class="cat-tab" onclick="filterFood('nham-nhi',this)">Nhâm Nhi</button>
+        </div>
+        <div class="cat-modal-grid" id="food-grid"></div>
+    </div>
+</div>
+
+<!-- ═══ MODAL: ĐẶT BÀN ═══ -->
+<div id="modal-booking" class="modal-overlay" onclick="overlayClose(event,'modal-booking')">
+    <div class="modal-box booking-modal-box">
+        <button class="modal-close" onclick="closeModal('modal-booking')">✕</button>
+
+        <!-- Step 1: Form đặt bàn -->
+        <div id="booking-step-1">
+            <div class="booking-hero">
+                <div class="booking-hero-icon">🪑</div>
+                <h1>Đặt Bàn Tại Lake View</h1>
+                <p>Chọn không gian lý tưởng, chúng tôi sẽ chuẩn bị mọi thứ cho bạn</p>
+            </div>
+            <div class="booking-body">
+
+                <!-- Row 1: Số người & Khu vực -->
+                <div class="booking-row-2">
+                    <div class="booking-field">
+                        <label><i class="fas fa-users"></i> Số lượng người</label>
+                        <div class="number-input-wrap">
+                            <button type="button" class="num-btn" onclick="changeGuests(-1)">−</button>
+                            <input type="number" id="booking-guests" value="2" min="1" max="50" readonly>
+                            <button type="button" class="num-btn" onclick="changeGuests(1)">+</button>
+                        </div>
+                    </div>
+                    <div class="booking-field">
+                        <label><i class="fas fa-clock"></i> Thời gian đến</label>
+                        <input type="datetime-local" id="booking-time" class="booking-input">
+                    </div>
+                </div>
+
+                <!-- Khu vực -->
+                <div class="booking-field">
+                    <label><i class="fas fa-map-marker-alt"></i> Chọn khu vực</label>
+                    <div class="area-grid" id="area-grid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Đồ uống -->
+                <div class="booking-field">
+                    <label><i class="fas fa-coffee"></i> Chọn đồ uống / đồ ăn <span class="label-hint">(tuỳ chọn — có thể gọi thêm tại quán)</span></label>
+                    <div class="drink-order-wrap">
+                        <div class="drink-search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="drink-order-search" placeholder="Tìm nhanh món..." oninput="filterOrderMenu(this.value)">
+                        </div>
+                        <div class="drink-category-tabs" id="order-cat-tabs">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <div class="drink-menu-grid" id="order-menu-grid">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <!-- Cart summary -->
+                        <div class="order-cart" id="order-cart" style="display:none;">
+                            <div class="order-cart-title"><i class="fas fa-shopping-basket"></i> Món đã chọn</div>
+                            <div id="order-cart-items"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ghi chú -->
+                <div class="booking-field">
+                    <label><i class="fas fa-pen"></i> Ghi chú thêm <span class="label-hint">(không bắt buộc)</span></label>
+                    <textarea id="booking-note" class="booking-textarea" placeholder="VD: Cần ghế trẻ em, muốn bàn gần hồ, tổ chức sinh nhật..."></textarea>
+                </div>
+
+                <!-- Lưu ý phụ phí -->
+                <div class="booking-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Đặt thêm bàn từ lần thứ 2 trở đi sẽ phát sinh phụ phí <strong>50.000 VNĐ/bàn</strong></span>
+                </div>
+
+                <button class="booking-submit-btn" onclick="proceedBooking()">
+                    <i class="fas fa-calculator"></i> Xem tổng tiền & Xác nhận
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2: Xác nhận & Thanh toán -->
+        <div id="booking-step-2" style="display:none;">
+            <div class="booking-hero" style="background: linear-gradient(135deg,#2d6a4f,#1b4332);">
+                <div class="booking-hero-icon">🧾</div>
+                <h1>Xác Nhận Đặt Bàn</h1>
+                <p>Vui lòng kiểm tra thông tin trước khi xác nhận</p>
+            </div>
+            <div class="booking-body">
+                <div id="booking-summary"></div>
+                <div class="booking-total-box" id="booking-total-box"></div>
+                <div class="booking-confirm-actions">
+                    <button class="btn-back" onclick="backToBookingForm()"><i class="fas fa-arrow-left"></i> Chỉnh sửa</button>
+                    <button class="btn-add-table" onclick="addAnotherTable()"><i class="fas fa-plus"></i> Thêm bàn (+50k)</button>
+                    <button class="btn-confirm" onclick="confirmBooking()"><i class="fas fa-check-circle"></i> Xác nhận đặt bàn</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Cảm ơn & Bill -->
+        <div id="booking-step-3" style="display:none;">
+            <div class="booking-thankyou">
+                <div class="thankyou-anim">
+                    <div class="thankyou-circle">✓</div>
+                </div>
+                <h1 class="thankyou-title">Cảm ơn Quý Khách! 🌿</h1>
+                <p class="thankyou-sub">Đặt bàn của bạn đã được ghi nhận. Chúng tôi sẽ chuẩn bị không gian tuyệt vời nhất cho bạn!</p>
+            </div>
+            <div class="booking-body">
+                <div class="bill-box" id="final-bill"></div>
+                <div class="bill-actions">
+                    <button class="btn-confirm" onclick="closeModal('modal-booking'); resetBooking();">
+                        <i class="fas fa-home"></i> Về trang chủ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ MODAL: LIÊN HỆ ═══ -->
+<div id="modal-contact" class="modal-overlay" onclick="overlayClose(event,'modal-contact')">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('modal-contact')">✕</button>
+        <div class="contact-hero">
+            <h1>📞 Kết Nối Cùng Lake View Coffee</h1>
+            <p>Chúng tôi luôn sẵn lòng lắng nghe và đồng hành cùng bạn để tạo nên những khoảnh khắc thư thái nhất.</p>
+        </div>
+        <div class="contact-cards">
+            <div class="contact-card"><div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-card-text"><h3>Địa Chỉ</h3><p>Khu đô thị Ecopark, Văn Giang, Hưng Yên.</p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-card-text"><h3>Đường Dây Nóng</h3><p><a href="tel:0987888386">0987.888.8386</a><br><small style="color:#999;font-weight:400;">Hỗ trợ đặt bàn và phản hồi dịch vụ</small></p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><i class="fas fa-clock"></i></div><div class="contact-card-text"><h3>Thời Gian Đón Khách</h3><p>7:30 Sáng – 11:00 Đêm<br><small style="color:#999;font-weight:400;">Mở cửa hàng ngày, kể cả lễ tết</small></p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><i class="fab fa-facebook"></i></div><div class="contact-card-text"><h3>Fanpage</h3><p><a href="#">Lake View Coffee</a><br><small style="color:#999;font-weight:400;">Cập nhật khung hình chill & ưu đãi mới nhất</small></p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><i class="fas fa-envelope"></i></div><div class="contact-card-text"><h3>Email</h3><p><a href="mailto:contact@lakeviewcoffee.com">contact@lakeviewcoffee.com</a></p></div></div>
+            <div class="contact-card"><div class="contact-card-icon"><i class="fab fa-instagram"></i></div><div class="contact-card-text"><h3>Instagram & TikTok</h3><p>@lakeviewcoffee<br><small style="color:#999;font-weight:400;">Ảnh chill ven hồ mỗi ngày</small></p></div></div>
+        </div>
+        <div class="contact-quote-wrap">
+            <div class="contact-quote">
+                <p>"Nếu bạn cần một góc nhìn hồ thơ mộng nhất cho buổi hẹn hò, hay muốn tổ chức một buổi gặp mặt ấm cúng bên người thân, hãy nhắn cho chúng tôi nhé."</p>
+                <cite>— ĐỘI NGŨ LAKE VIEW COFFEE —</cite>
+            </div>
+        </div>
+        <div class="contact-map-placeholder">
+            <iframe src="https://maps.google.com/maps?q=Ecopark+Van+Giang+Hung+Yen&output=embed" allowfullscreen loading="lazy" title="Bản đồ Lake View Coffee"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCT HOVER TOOLTIP -->
+<div class="product-tooltip" id="product-tooltip">
+    <div class="tooltip-inner">
+        <div class="tooltip-section">
+            <div class="tooltip-label"><i class="fas fa-flask"></i> Nguyên liệu</div>
+            <div class="tooltip-ingredients" id="tip-ingredients"></div>
+        </div>
+        <div class="tooltip-section">
+            <div class="tooltip-label"><i class="fas fa-wind"></i> Hương vị</div>
+            <div class="tooltip-flavor" id="tip-flavor"></div>
+        </div>
+        <div class="tooltip-section">
+            <div class="tooltip-label"><i class="fas fa-star"></i> Đánh giá</div>
+            <div class="tooltip-stars" id="tip-stars"></div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
